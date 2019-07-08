@@ -38,7 +38,10 @@ namespace EasyFarm.States
             if (context.Config.HomePointOnDeath) HomePointOnDeath(context);
 
             // Stop the engine from running.
-            AppServices.SendPauseEvent();
+            if (context.Config.StopOnDeath)
+            {
+                AppServices.SendPauseEvent();
+            }
         }
 
         private void HomePointOnDeath(IGameContext context)

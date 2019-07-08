@@ -49,6 +49,7 @@ namespace EasyFarm.UserSettings
         bool MinimizeToTray { get; set; }
         int TrustPartySize { get; set; }
         bool HomePointOnDeath { get; set; }
+        bool StopOnDeath { get; set; }
         bool EnableTabTargeting { get; set; }
         bool IsObjectAvoidanceEnabled { get; set; }
         bool IsThirdPersonCombatEnabled { get; set; }

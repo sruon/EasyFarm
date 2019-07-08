@@ -159,6 +159,13 @@ namespace EasyFarm.UserSettings
             get => Config.Instance.HomePointOnDeath;
             set => Config.Instance.HomePointOnDeath = value;
         }
+
+        public bool StopOnDeath
+        {
+            get => Config.Instance.StopOnDeath;
+            set => Config.Instance.StopOnDeath = value;
+        }
+
         public bool EnableTabTargeting
         {
             get => Config.Instance.EnableTabTargeting;

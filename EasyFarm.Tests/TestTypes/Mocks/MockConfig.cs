@@ -50,8 +50,10 @@ namespace EasyFarm.Tests.TestTypes.Mocks
         public bool MinimizeToTray { get; set; }
         public int TrustPartySize { get; set; }
         public bool HomePointOnDeath { get; set; }
+        public bool StopOnDeath { get; set; }
         public bool EnableTabTargeting { get; set; }
         public bool IsObjectAvoidanceEnabled { get; set; }
+        public bool IsThirdPersonCombatEnabled { get; set; }
         public double FollowDistance { get; set; }
         public string FollowedPlayer { get; set; }
         public Route Route { get; set; } = new Route();

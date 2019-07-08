@@ -28,6 +28,10 @@
                       ToolTip="Sets whether the player should return to homepoint on death."
                       IsChecked="{Binding HomePointOnDeath}"
                       Margin="5, 5" />
+                    <CheckBox Content="Pause On Death"
+                      ToolTip="Sets whether the engine will be paused after using Home Point."
+                      IsChecked="{Binding StopOnDeath}"
+                      Margin="5, 5" />
                 </UniformGrid>
             </Expander>
             <Expander Header="Trust Settings" Margin="0, 5">

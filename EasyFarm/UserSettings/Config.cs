@@ -191,6 +191,11 @@ namespace EasyFarm.UserSettings
         public bool HomePointOnDeath = false;
 
         /// <summary>
+        /// Whether the engine should stop on death or not.
+        /// </summary>
+        public bool StopOnDeath = true;
+
+        /// <summary>
         /// Toggles whether program should target things using memory or by
         /// tabbing to its target.
         /// </summary>

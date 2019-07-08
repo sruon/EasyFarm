@@ -131,6 +131,15 @@ namespace EasyFarm.ViewModels
             }
         }
 
+        public bool StopOnDeath
+        {
+            get { return Config.Instance.StopOnDeath; }
+            set
+            {
+                Set(ref Config.Instance.StopOnDeath, value);
+            }
+        }
+
         public int TrustPartySize
         {
             get { return Config.Instance.TrustPartySize; }
@@ -152,6 +161,7 @@ namespace EasyFarm.ViewModels
             ShouldApproach = true;
             ShouldEngage = true;
             HomePointOnDeath = false;
+            StopOnDeath = true;
             TrustPartySize = Constants.TrustPartySize;
             AppServices.InformUser("Defaults have been restored.");
         }        
