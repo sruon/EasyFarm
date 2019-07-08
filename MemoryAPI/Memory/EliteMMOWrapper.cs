@@ -343,6 +343,8 @@ namespace MemoryAPI.Memory
 
             public Job SubJob => (Job)Unit.SubJob;
 
+            public short Level => (short)Unit.MainJobLvl;
+
             public NpcType NpcType
             {
                 get
@@ -446,6 +448,8 @@ namespace MemoryAPI.Memory
             public Job Job => (Job)_api.Player.MainJob;
 
             public Job SubJob => (Job)_api.Player.SubJob;
+
+            public short Level => (short)_api.Player.MainJobLevel;
         }
 
         public class TargetTools : ITargetTools

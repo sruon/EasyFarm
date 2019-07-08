@@ -106,12 +106,12 @@ namespace EasyFarm.Tests.TestTypes.Mocks
         {
         }
 
-        public void GotoWaypoint(Position position, bool useObjectAvoidance, bool keepRunning)
+        public void GotoWaypoint(Position position, bool useObjectAvoidance, bool keepRunning, bool thirdPersonCombat)
         {
             throw new System.NotImplementedException();
         }
 
-        public void GotoNPC(int ID, bool useObjectAvoidance)
+        public void GotoNPC(int ID, bool useObjectAvoidance, bool thirdPersonCombat)
         {
             throw new System.NotImplementedException();
         }
@@ -254,6 +254,7 @@ namespace EasyFarm.Tests.TestTypes.Mocks
         public Zone Zone { get; set; }
         public Job Job { get; set; }
         public Job SubJob { get; set; }
+        public short Level { get; set; }
     }
 
     public class MockWindowerTools : IWindowerTools
@@ -309,5 +310,6 @@ namespace EasyFarm.Tests.TestTypes.Mocks
         public Job Job { get; set; }
         public Job SubJob { get; set; }
         public NpcType NpcType { get; set; }
+        public short Level { get; set; }
     }
 }

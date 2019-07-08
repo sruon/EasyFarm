@@ -83,6 +83,12 @@ namespace EasyFarm.States
                 if (t.HPPCurrent <= trust.ResummonHPHigh && t.HPPCurrent >= trust.ResummonHPLow)
                     return true;
 
+            // The player levelled up, resummon
+            if (t.Level < context.Player.Level)
+            {
+                return true;
+            }
+
             return false;
         }
 

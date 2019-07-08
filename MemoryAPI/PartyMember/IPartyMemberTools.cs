@@ -42,5 +42,7 @@ namespace MemoryAPI
         Job SubJob { get; }
 
         NpcType NpcType { get; }
+
+        short Level { get; }
     }
 }
