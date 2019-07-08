@@ -60,10 +60,10 @@ namespace EasyFarm.Handlers
             ViewModelBase.SetSession(fface);
 
             // Tell the user the program has loaded the player's data
-            AppServices.InformUser("Bot Loaded: " + fface.Player.Name);
+            AppServices.InformUser("Bot Loaded: " + fface.Player.Name + " - " + fface.Player.Job);
 
             // Set the main window's title to the player's name.
-            AppServices.UpdateTitle("EasyFarm - " + fface.Player.Name);
+            AppServices.UpdateTitle("EasyFarm - " + fface.Player.Name + " - " + fface.Player.Job);
         }
 
         protected override async Task Execute()

@@ -76,9 +76,15 @@ namespace EasyFarm.Infrastructure
         {
             var persister = new Persister();
             var characterName = FFACE?.Player?.Name;
-            var fileName = $"{characterName}.eup";
+            var characterJob = FFACE?.Player?.Job;
+            var fileName = $"{characterName}-{characterJob}.eup";
             if (String.IsNullOrWhiteSpace(fileName)) return;
-            if (!File.Exists(fileName)) return;
+            if (!File.Exists(fileName))
+            {
+                fileName = $"{characterName}.eup";
+                if (String.IsNullOrWhiteSpace(fileName)) return;
+                if (!File.Exists(fileName)) return;
+            }
             var config = persister.Deserialize<Config>(fileName);
             Config.Instance = config;
             AppServices.SendConfigLoaded();

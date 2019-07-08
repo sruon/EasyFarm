@@ -60,7 +60,16 @@ namespace EasyFarm.Infrastructure
         {
             IPersister persister = _container.Get<IPersister>();
             string characterName = ViewModelBase.FFACE?.Player?.Name;
+            string characterJob = ViewModelBase.FFACE?.Player?.Job.ToString();
+
             string fileName = $"{characterName}.eup";
+
+            if (!String.IsNullOrWhiteSpace(fileName))
+            {
+                persister.Serialize(fileName, Config.Instance);
+            }
+
+            fileName = $"{characterName}-{characterJob}.eup";
 
             if (!String.IsNullOrWhiteSpace(fileName))
             {
