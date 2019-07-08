@@ -37,7 +37,7 @@ namespace EasyFarm.Handlers
             _window = window;
         }
 
-        private void ChangeCharacter(SelectCharacterResult result)
+        internal void ChangeCharacter(SelectCharacterResult result)
         {
             Process process = result.Process;
             Boolean isProcessSelected = result.IsSelected;

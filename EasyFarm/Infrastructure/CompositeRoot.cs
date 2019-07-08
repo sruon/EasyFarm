@@ -58,6 +58,7 @@ namespace EasyFarm.Infrastructure
             IgnoredViewModel ignoredViewModel = new IgnoredViewModel();
             LogViewModel logViewModel = new LogViewModel();            
             SelectProcessViewModel selectProcessViewModel = new SelectProcessViewModel(new SelectProcessDialog());
+            AutoAttachCharacter onLoadEvents = new AutoAttachCharacter(selectCharacterRequest, selectProcessViewModel, dialogCoordinator, EventMessenger);
             RestingViewModel restingViewModel = new RestingViewModel();
             RoutesViewModel routesViewModel = new RoutesViewModel();
             SettingsViewModel settingsViewModel = new SettingsViewModel();
@@ -84,6 +85,7 @@ namespace EasyFarm.Infrastructure
             if (requestedType == typeof(IDialogCoordinator)) return dialogCoordinator;
             if (requestedType == typeof(IPersister)) return persister;
             if (requestedType == typeof(UpdateEliteAPI)) return updateEliteAPI;
+            if (requestedType == typeof(AutoAttachCharacter)) return onLoadEvents;
             if (requestedType == typeof(BattlesViewModel)) return battlesViewModel;
             if (requestedType == typeof(FollowViewModel)) return followViewModel;
             if (requestedType == typeof(IgnoredViewModel)) return ignoredViewModel;

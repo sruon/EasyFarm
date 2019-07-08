@@ -190,6 +190,7 @@
     <Compile Include="Handlers\SelectCharacter.cs" />
     <Compile Include="Handlers\SelectCharacterResult.cs" />
     <Compile Include="Handlers\BaseCommand.cs" />
+    <Compile Include="Handlers\AutoAttachCharacter.cs" />
     <Compile Include="Infrastructure\CompositeRoot.cs" />
     <Compile Include="Handlers\LoadedEvent.cs" />
     <Compile Include="Infrastructure\TabViewModels.cs" />
