@@ -147,6 +147,7 @@ namespace EasyFarm.Classes
         /// Resummon MP High End
         /// </summary>
         private int _resummonMpHigh;
+        private short _summonedLevel = 0;
 
         private int _index;
         private int _id;
@@ -438,7 +439,13 @@ namespace EasyFarm.Classes
                 AppServices.InformUser($"Resummon MP Range set {_resummonMpLow} TO {_resummonMpHigh}.");
             }
         }
-        
+
+        public short SummonedLevel
+        {
+            get { return _summonedLevel; }
+            set { Set(ref _summonedLevel, value); }
+        }
+
         public bool TriggerOnEffectPresent
         {
             get { return _triggerOnEffectPresent; }
@@ -501,13 +508,18 @@ namespace EasyFarm.Classes
         {
             get
             {
-                ObservableCollection<Ability> availableAbilities = new ObservableCollection<Ability>(
-                    Infrastructure.ViewModelBase.AbilityService?.Resources
-                        .Where(x => x.English.ToLower().Contains(Name?.ToLower() ?? ""))
-                        .Where(x => !string.IsNullOrWhiteSpace(x.English))
-                        .Take(3)?
-                        .ToList() ?? new List<Ability>());
-
+                var before_parsing = Infrastructure.ViewModelBase.AbilityService?.Resources;
+                ObservableCollection<Ability> availableAbilities = new ObservableCollection<Ability>();
+                foreach (Ability ability in Infrastructure.ViewModelBase.AbilityService?.Resources)
+                {
+                    if (!string.IsNullOrWhiteSpace(ability.English))
+                    {
+                        if (ability.English != ".")
+                        {
+                            availableAbilities.Add(ability);
+                        }
+                    }
+                }
                 return availableAbilities;
             }
         }

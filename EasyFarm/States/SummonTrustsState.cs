@@ -83,11 +83,8 @@ namespace EasyFarm.States
                 if (t.HPPCurrent <= trust.ResummonHPHigh && t.HPPCurrent >= trust.ResummonHPLow)
                     return true;
 
-            // The player levelled up, resummon
-            if (t.Level < context.Player.Level)
-            {
+            if (trust.SummonedLevel < context.Player.Level)
                 return true;
-            }
 
             return false;
         }
@@ -125,6 +122,7 @@ namespace EasyFarm.States
                     !TrustInParty(context, trust) && PartyHasSpace(context) && !MaxTrustsReached(context, maxTrustPartySize))
                     return true;
 
+
             return false;
         }
 
@@ -141,7 +139,10 @@ namespace EasyFarm.States
             var trusts = context.Config.BattleLists["Trusts"].Actions.Where(t => t.IsEnabled);
             foreach (var trust in trusts)
                 if (TrustNeedsSummoning(context, trust) && AbilityUtils.IsRecastable(context.API, trust))
-                    context.Memory.Executor.UseActions(new[] {trust});
+                {
+                    context.Memory.Executor.UseActions(new[] { trust });
+                    trust.SummonedLevel = context.Player.Level;
+                }
         }
     }
 }

@@ -67,5 +67,11 @@ namespace EasyFarm.Context
             get => _memoryAPI.Player.MPPCurrent;
             set => throw new NotImplementedException();
         }
+
+        public short Level
+        {
+            get => _memoryAPI.Player.Level;
+            set => throw new NotImplementedException();
+        }
     }
 }
