@@ -51,6 +51,7 @@ namespace EasyFarm.UserSettings
         bool HomePointOnDeath { get; set; }
         bool EnableTabTargeting { get; set; }
         bool IsObjectAvoidanceEnabled { get; set; }
+        bool IsThirdPersonCombatEnabled { get; set; }
         double FollowDistance { get; set; }
         string FollowedPlayer { get; set; }
         Route Route { get; set; }

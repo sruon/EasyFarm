@@ -62,7 +62,8 @@ namespace EasyFarm.States
             context.API.Navigator.GotoWaypoint(
                 nextPosition,
                 context.Config.IsObjectAvoidanceEnabled,
-                shouldKeepRunningToNextWaypoint);
+                shouldKeepRunningToNextWaypoint,
+                context.Config.IsThirdPersonCombatEnabled);
         }
 
         public override void Exit(IGameContext context)

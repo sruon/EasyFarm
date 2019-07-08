@@ -118,7 +118,7 @@ namespace EasyFarm.Classes
             if (target.Distance > action.Distance)
             {
                 _fface.Navigator.DistanceTolerance = action.Distance;
-                _fface.Navigator.GotoNPC(target.Id, Config.Instance.IsObjectAvoidanceEnabled);
+                _fface.Navigator.GotoNPC(target.Id, Config.Instance.IsObjectAvoidanceEnabled, Config.Instance.IsObjectAvoidanceEnabled);
             }
         }        
 

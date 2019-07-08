@@ -86,17 +86,17 @@ namespace MemoryAPI.Memory
                     Math.Pow(position.Z - player.Z, 2));
             }
 
-            public void GotoWaypoint(Position position, bool useObjectAvoidance, bool keepRunning)
+            public void GotoWaypoint(Position position, bool useObjectAvoidance, bool keepRunning, bool thirdPersonCombat)
             {
                 if (!(DistanceTo(position) > DistanceTolerance)) return;
-                MoveForwardTowardsPosition(() => position, useObjectAvoidance);
+                MoveForwardTowardsPosition(() => position, useObjectAvoidance, thirdPersonCombat);
                 if (!keepRunning) Reset();
             }
 
-            public void GotoNPC(int id, bool useObjectAvoidance)
+            public void GotoNPC(int id, bool useObjectAvoidance, bool thirdPersonCombat)
             {
-                MoveForwardTowardsPosition(() => GetEntityPosition(id), useObjectAvoidance);
-                KeepOneYalmBack(GetEntityPosition(id));
+                MoveForwardTowardsPosition(() => GetEntityPosition(id), useObjectAvoidance, thirdPersonCombat);
+                KeepOneYalmBack(GetEntityPosition(id), thirdPersonCombat);
                 FaceHeading(GetEntityPosition(id));
                 Reset();
             }
@@ -110,7 +110,8 @@ namespace MemoryAPI.Memory
 
             private void MoveForwardTowardsPosition(
                 Func<Position> targetPosition,
-                bool useObjectAvoidance)
+                bool useObjectAvoidance,
+                bool thirdPersonCombat)
             {
                 if (!(DistanceTo(targetPosition()) > DistanceTolerance)) return;
 
@@ -124,6 +125,10 @@ namespace MemoryAPI.Memory
                     if (useObjectAvoidance) AvoidObstacles();
                     Thread.Sleep(100);
                 }
+                if (thirdPersonCombat)
+                {
+                    SetViewMode(ViewMode.ThirdPerson);
+                }
             }
 
             private void KeepRunningWithKeyboard()
@@ -131,7 +136,7 @@ namespace MemoryAPI.Memory
                 _api.ThirdParty.KeyDown(Keys.NUMPAD8);
             }
 
-            private void KeepOneYalmBack(Position position)
+            private void KeepOneYalmBack(Position position, bool thirdPersonCombat)
             {
                 if (DistanceTo(position) > TooCloseDistance) return;
 
@@ -140,7 +145,7 @@ namespace MemoryAPI.Memory
 
                 while (DistanceTo(position) <= TooCloseDistance && DateTime.Now < duration)
                 {
-                    SetViewMode(ViewMode.FirstPerson);
+                    SetViewMode(thirdPersonCombat ? ViewMode.ThirdPerson : ViewMode.FirstPerson);
                     FaceHeading(position);
                     Thread.Sleep(30);
                 }

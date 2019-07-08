@@ -169,6 +169,12 @@ namespace EasyFarm.UserSettings
             get => Config.Instance.IsObjectAvoidanceEnabled;
             set => Config.Instance.IsObjectAvoidanceEnabled = value;
         }
+
+        public bool IsThirdPersonCombatEnabled
+        {
+            get => Config.Instance.IsThirdPersonCombatEnabled;
+            set => Config.Instance.IsThirdPersonCombatEnabled = value;
+        }
         public double FollowDistance
         {
             get => Config.Instance.FollowDistance;

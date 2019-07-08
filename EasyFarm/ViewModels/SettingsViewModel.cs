@@ -104,6 +104,15 @@ namespace EasyFarm.ViewModels
             }
         }
 
+        public bool ThirdPersonCombat
+        {
+            get { return Config.Instance.IsThirdPersonCombatEnabled; }
+            set
+            {
+                Set(ref Config.Instance.IsThirdPersonCombatEnabled, value);
+            }
+        }
+
         public bool EnableTabTargeting
         {
             get { return Config.Instance.EnableTabTargeting; }

@@ -63,7 +63,7 @@ namespace EasyFarm.States
 
             // Follow the player. 
             context.API.Navigator.DistanceTolerance = context.Config.FollowDistance;
-            context.API.Navigator.GotoNPC(player.Id, context.Config.IsObjectAvoidanceEnabled);
+            context.API.Navigator.GotoNPC(player.Id, context.Config.IsObjectAvoidanceEnabled, context.Config.IsThirdPersonCombatEnabled);
         }
     }
 }
