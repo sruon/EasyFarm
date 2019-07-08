@@ -50,7 +50,7 @@ namespace EasyFarm.Infrastructure
             LibraryUpdater libraryUpdater = new LibraryUpdater();
             DialogCoordinator dialogCoordinator = new DialogCoordinator();
             Persister persister = new Persister();
-            UpdateEliteAPI updateEliteAPI = new UpdateEliteAPI(libraryUpdater, dialogCoordinator, EventMessenger);
+            UpdateEliteAPI updateEliteAPI = new UpdateEliteAPI(libraryUpdater, EventMessenger);
             SelectCharacter selectCharacterRequest = new SelectCharacter(EventMessenger, metroWindow);
             SelectAbilityRequestHandler selectAbilityRequestHandler = new SelectAbilityRequestHandler(metroWindow);
             BattlesViewModel battlesViewModel = new BattlesViewModel();

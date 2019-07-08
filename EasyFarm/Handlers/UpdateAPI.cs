@@ -26,28 +26,18 @@ namespace EasyFarm.Handlers
     public class UpdateEliteAPI : EventHandlerBase<LoadedEvent>
     {
         private readonly LibraryUpdater _updater;
-        private readonly IDialogCoordinator _dialogCoordinator;
 
         public UpdateEliteAPI(
             LibraryUpdater updater,
-            IDialogCoordinator dialogCoordinator,
             EventMessenger events) : base(events)
         {
             _updater = updater;
-            _dialogCoordinator = dialogCoordinator;
         }
 
         protected override async Task Execute()
         {
             if (_updater.HasUpdate())
             {
-                var showDialogResult = await _dialogCoordinator.ShowMessageAsync(
-                    Application.Current.MainWindow.DataContext,
-                    "Update EliteAPI",
-                    "Would you like to update EliteAPI to its newest version?",
-                    MessageDialogStyle.AffirmativeAndNegative);
-
-                if (showDialogResult == MessageDialogResult.Affirmative)
                     _updater.Update();
             }
         }
