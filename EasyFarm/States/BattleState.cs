@@ -83,10 +83,10 @@ namespace EasyFarm.States
             List<EliteMMO.API.EliteAPI.ChatEntry> matches = chatEntries
                 .Where(x => invalidTargetPattern.IsMatch(x.Text)).ToList();
 
-            foreach (EliteMMO.API.EliteAPI.ChatEntry m in matches.Where(x => x.Timestamp.ToString() == DateTime.Now.ToString()))
+            if (matches.Count >= 4)
             {
-                context.API.Windower.SendString(Constants.AttackOff);
-                LogViewModel.Write("Recycled battle stance to properly engage the target.");
+                    context.API.Windower.SendString(Constants.AttackOff);
+                    LogViewModel.Write("Recycled battle stance to properly engage the target.");
             }
         }
     }
