@@ -125,10 +125,6 @@ namespace MemoryAPI.Memory
                     if (useObjectAvoidance) AvoidObstacles();
                     Thread.Sleep(100);
                 }
-                //if (thirdPersonCombat)
-                //{
-                //    SetViewMode(ViewMode.ThirdPerson);
-                //}
             }
 
             private void KeepRunningWithKeyboard()
