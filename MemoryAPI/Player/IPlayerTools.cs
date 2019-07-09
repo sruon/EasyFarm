@@ -40,5 +40,8 @@ namespace MemoryAPI
         Job SubJob { get; }
 
         short Level { get; }
+        bool HasAbility(uint id);
+        bool HasSpell(uint id);
+        bool HasWeaponSkill(uint id);
     }
 }

@@ -508,9 +508,9 @@ namespace EasyFarm.Classes
         {
             get
             {
-                var before_parsing = Infrastructure.ViewModelBase.AbilityService?.Resources;
+                var unparsedAbilities = Infrastructure.ViewModelBase.AbilityService?.Resources;
                 ObservableCollection<Ability> availableAbilities = new ObservableCollection<Ability>();
-                foreach (Ability ability in Infrastructure.ViewModelBase.AbilityService?.Resources)
+                foreach (Ability ability in unparsedAbilities)
                 {
                     if (!string.IsNullOrWhiteSpace(ability.English))
                     {

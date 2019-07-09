@@ -56,15 +56,20 @@ namespace EasyFarm.Parsing
             for (Int32 i = 0; i < 100000; i++)
             {
                 EliteAPI.IItem item = api.Resource.GetItem(i);
-                EliteAPI.ISpell spell = api.Resource.GetSpell(i);
-                EliteAPI.IAbility ability = api.Resource.GetAbility(i);
+                if (api.Player.HasAbility((uint)i))
+                {
+                    EliteAPI.IAbility ability = api.Resource.GetAbility(i);
+                    if (ability != null)
+                        if ((TargetType) ability.ValidTargets != TargetType.Unknown)
+                            resources.Add(abilityMapper.Map(ability));
+                }
 
-                if (item != null)
-                    resources.Add(itemMapper.Map(item));
-                if (spell != null)
-                    resources.Add(spellMapper.Map(spell));
-                if (ability != null)
-                    resources.Add(abilityMapper.Map(ability));
+                if (api.Player.HasSpell((uint)i))
+                {
+                    EliteAPI.ISpell spell = api.Resource.GetSpell(i);
+                    if (spell != null)
+                        resources.Add(spellMapper.Map(spell));
+                }
             }
 
             return resources;
