@@ -80,10 +80,13 @@ namespace EasyFarm.States
             var chatEntries = context.API.Chat.ChatEntries.ToList();
             var invalidTargetPattern = new Regex("Unable to see");
 
-            List<EliteMMO.API.EliteAPI.ChatEntry> matches = chatEntries
-                .Where(x => invalidTargetPattern.IsMatch(x.Text)).ToList();
+            DateTime now = DateTime.Now;
 
-            if (matches.Count >= 4)
+            List<EliteMMO.API.EliteAPI.ChatEntry> matches = chatEntries
+                .Where(x => invalidTargetPattern.IsMatch(x.Text))
+                .Where(x => x.Timestamp > now.AddSeconds(-10)).ToList();
+
+            if (matches.Count >= 2)
             {
                     context.API.Windower.SendString(Constants.AttackOff);
                     LogViewModel.Write("Recycled battle stance to properly engage the target.");
