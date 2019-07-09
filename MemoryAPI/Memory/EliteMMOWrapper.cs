@@ -125,10 +125,10 @@ namespace MemoryAPI.Memory
                     if (useObjectAvoidance) AvoidObstacles();
                     Thread.Sleep(100);
                 }
-                if (thirdPersonCombat)
-                {
-                    SetViewMode(ViewMode.ThirdPerson);
-                }
+                //if (thirdPersonCombat)
+                //{
+                //    SetViewMode(ViewMode.ThirdPerson);
+                //}
             }
 
             private void KeepRunningWithKeyboard()
@@ -138,6 +138,7 @@ namespace MemoryAPI.Memory
 
             private void KeepOneYalmBack(Position position, bool thirdPersonCombat)
             {
+                SetViewMode(thirdPersonCombat ? ViewMode.ThirdPerson : ViewMode.FirstPerson);
                 if (DistanceTo(position) > TooCloseDistance) return;
 
                 DateTime duration = DateTime.Now.AddSeconds(5);
