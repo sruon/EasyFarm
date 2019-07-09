@@ -10,7 +10,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>EasyFarm</RootNamespace>
     <AssemblyName>EasyFarm</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <TargetFrameworkProfile>
     </TargetFrameworkProfile>
     <FileAlignment>512</FileAlignment>
@@ -223,6 +223,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="Classes\NullUnit.cs" />
+    <Compile Include="States\ReportState.cs" />
     <Compile Include="States\StateHistory.cs" />
     <Compile Include="States\StateLog.cs" />
     <Compile Include="States\StateStatus.cs" />
@@ -263,6 +264,7 @@
     <Compile Include="Classes\ISystemTray.cs" />
     <Compile Include="Classes\LinqExtensions.cs" />
     <Compile Include="ViewModels\ListViewModel.cs" />
+    <Compile Include="ViewModels\ReportViewModel.cs" />
     <Compile Include="ViewModels\MasterViewModel.cs" />
     <Compile Include="States\ApproachState.cs" />
     <Compile Include="States\StateMemory.cs" />
@@ -298,6 +300,9 @@
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="Views\FollowView.xaml.cs">
       <DependentUpon>FollowView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ReportView.xaml.cs">
+      <DependentUpon>ReportView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\MainView.xaml.cs">
       <DependentUpon>MainView.xaml</DependentUpon>
@@ -388,6 +393,10 @@
     <Page Include="Views\FollowView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ReportView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\MainView.xaml">
       <SubType>Designer</SubType>

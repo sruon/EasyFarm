@@ -56,7 +56,8 @@ namespace EasyFarm.Infrastructure
             BattlesViewModel battlesViewModel = new BattlesViewModel();
             FollowViewModel followViewModel = new FollowViewModel();
             IgnoredViewModel ignoredViewModel = new IgnoredViewModel();
-            LogViewModel logViewModel = new LogViewModel();            
+            LogViewModel logViewModel = new LogViewModel();
+            ReportViewModel reportViewModel = new ReportViewModel();
             SelectProcessViewModel selectProcessViewModel = new SelectProcessViewModel(new SelectProcessDialog());
             AutoAttachCharacter onLoadEvents = new AutoAttachCharacter(selectCharacterRequest, selectProcessViewModel, dialogCoordinator, EventMessenger);
             RestingViewModel restingViewModel = new RestingViewModel();
@@ -66,6 +67,7 @@ namespace EasyFarm.Infrastructure
             TargetsViewModel targetsViewModel = new TargetsViewModel();            
             TabViewModels tabViewModels = new TabViewModels(new List<IViewModel>()
             {
+                reportViewModel,
                 battlesViewModel,
                 targetingViewModel,
                 restingViewModel,
@@ -90,6 +92,7 @@ namespace EasyFarm.Infrastructure
             if (requestedType == typeof(FollowViewModel)) return followViewModel;
             if (requestedType == typeof(IgnoredViewModel)) return ignoredViewModel;
             if (requestedType == typeof(LogViewModel)) return logViewModel;
+            if (requestedType == typeof(ReportViewModel)) return reportViewModel;
             if (requestedType == typeof(TabViewModels)) return tabViewModels;
             if (requestedType == typeof(MainViewModel)) return mainViewModel;
             if (requestedType == typeof(MasterViewModel)) return masterViewModel;

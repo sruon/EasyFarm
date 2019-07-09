@@ -73,5 +73,11 @@ namespace EasyFarm.Context
             get => _memoryAPI.Player.Level;
             set => throw new NotImplementedException();
         }
+
+        public string Name
+        {
+            get => _memoryAPI.Player.Name;
+            set => throw new NotImplementedException();
+        }
     }
 }

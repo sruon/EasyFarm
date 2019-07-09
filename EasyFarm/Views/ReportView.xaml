@@ -1,0 +1,46 @@
+﻿<UserControl x:Class="EasyFarm.Views.ReportView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             mc:Ignorable="d"
+             d:DesignHeight="200"
+             d:DesignWidth="400">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+        <Label Grid.Row="1" Grid.Column="0" Margin="5">EXP</Label>
+        <TextBox Grid.Row="1" Grid.Column="1" Margin="5" Text="{Binding EXP}" />
+        <Label Grid.Row="1" Grid.Column="2" Margin="5">LP</Label>
+        <TextBox Grid.Row="1" Grid.Column="3" Margin="5" Text="{Binding LP}" />
+        <Label Grid.Row="1" Grid.Column="4" Margin="5">CP</Label>
+        <TextBox Grid.Row="1" Grid.Column="5" Margin="5" Text="{Binding CP}" />
+        <Label Grid.Row="2" Grid.Column="0" Margin="5">Sparks</Label>
+        <TextBox Grid.Row="2" Grid.Column="1" Margin="5" Text="{Binding Sparks}" />
+        <Label Grid.Row="2" Grid.Column="2" Margin="5">Unity</Label>
+        <TextBox Grid.Row="2" Grid.Column="3" Margin="5" Text="{Binding Unity}" />
+        <Label Grid.Row="3" Grid.Column="0" Margin="5">Levels</Label>
+        <TextBox Grid.Row="3" Grid.Column="1" Margin="5" Text="{Binding LevelsGained}" />
+        <Label Grid.Row="3" Grid.Column="2" Margin="5">Merits</Label>
+        <TextBox Grid.Row="3" Grid.Column="3" Margin="5" Text="{Binding MeritsGained}" />
+        <Label Grid.Row="3" Grid.Column="4" Margin="5">JPs</Label>
+        <TextBox Grid.Row="3" Grid.Column="5" Margin="5" Text="{Binding JobPointsGained}" />
+        <Label Grid.Row="4" Grid.Column="0" Margin="5">Gil</Label>
+        <TextBox Grid.Row="4" Grid.Column="1" Margin="5" Text="{Binding Gil}" />
+    </Grid>
+</UserControl>

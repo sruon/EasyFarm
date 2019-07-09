@@ -15,19 +15,16 @@
 // You should have received a copy of the GNU General Public License
 // If not, see <http://www.gnu.org/licenses/>.
 // ///////////////////////////////////////////////////////////////////
-using MemoryAPI;
-
-namespace EasyFarm.Context
+namespace EasyFarm.Views
 {
-    public interface IPlayer
+    /// <summary>
+    ///     Interaction logic for ReportView.xaml
+    /// </summary>
+    public partial class ReportView
     {
-        Status Status { get; set; }
-        int HppCurrent { get; set; }
-        bool HasAggro { get; set; }
-        Zone Zone { get; set; }
-        int Str { get; set; }
-        int MppCurrent { get; set; }
-        short Level { get; set; }
-        string Name { get; set; }
+        public ReportView()
+        {
+            InitializeComponent();
+        }
     }
 }

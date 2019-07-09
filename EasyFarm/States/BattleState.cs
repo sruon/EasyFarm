@@ -84,7 +84,7 @@ namespace EasyFarm.States
 
             List<EliteMMO.API.EliteAPI.ChatEntry> matches = chatEntries
                 .Where(x => invalidTargetPattern.IsMatch(x.Text))
-                .Where(x => x.Timestamp > now.AddSeconds(-10)).ToList();
+                .Where(x => x.Timestamp > now.AddSeconds(-5)).ToList();
 
             if (matches.Count >= 2)
             {

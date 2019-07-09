@@ -43,6 +43,7 @@ namespace EasyFarm.States
             _context = new GameContext(fface);
 
             //Create the states
+            AddState(new ReportState() { Priority = 7 });
             AddState(new DeadState() {Priority = 7});
             AddState(new ZoneState() {Priority = 7});
             AddState(new SetTargetState() {Priority = 7});

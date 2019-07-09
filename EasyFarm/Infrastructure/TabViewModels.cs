@@ -40,13 +40,14 @@ namespace EasyFarm.Infrastructure
         /// </summary>
         public Dictionary<Type, int> AvailableTabs => new Dictionary<Type, int>
         {
-            { typeof(BattlesViewModel), 1 },
-            { typeof(TargetingViewModel), 2 },
-            { typeof(RestingViewModel), 3 },
-            { typeof(RoutesViewModel), 4 },
-            { typeof(FollowViewModel), 5 },
-            { typeof(LogViewModel), 6 },
-            { typeof(SettingsViewModel), 7 }
+            { typeof(ReportViewModel), 1 },
+            { typeof(BattlesViewModel), 2 },
+            { typeof(TargetingViewModel), 3 },
+            { typeof(RestingViewModel), 4 },
+            { typeof(RoutesViewModel), 5 },
+            { typeof(FollowViewModel), 6 },
+            { typeof(LogViewModel), 7 },
+            { typeof(SettingsViewModel), 8 }
         };
     }
 }
