@@ -22,11 +22,9 @@ using EasyFarm.Persistence;
 using EasyFarm.UserSettings;
 using GalaSoft.MvvmLight.Command;
 using System;
-using System.Threading.Tasks;
 using System.Windows.Input;
 using EasyFarm.Handlers;
 using Application = System.Windows.Application;
-
 namespace EasyFarm.ViewModels
 {
     /// <summary>
@@ -56,7 +54,8 @@ namespace EasyFarm.ViewModels
             _events = events;
             ViewModel = mainViewModel;
 
-            _settingsManager = new SettingsManager("eup", "EasyFarm User Preference");
+            Func<string> fileName = () => { return $"{FFACE?.Player?.Name}-{FFACE?.Player?.Job}"; };
+            _settingsManager = new SettingsManager("eup", "EasyFarm User Preference", fileName) ;
 
             AppServices.RegisterEvent<Events.TitleEvent>(this, e => MainWindowTitle = e.Message);
             AppServices.RegisterEvent<Events.StatusBarEvent>(this, e => StatusBarText = e.Message);

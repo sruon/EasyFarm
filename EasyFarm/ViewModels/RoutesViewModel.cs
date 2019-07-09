@@ -26,6 +26,7 @@ using EasyFarm.UserSettings;
 using GalaSoft.MvvmLight.Command;
 using MemoryAPI;
 using MemoryAPI.Navigation;
+using System;
 
 namespace EasyFarm.ViewModels
 {
@@ -36,8 +37,9 @@ namespace EasyFarm.ViewModels
         private string _recordHeader;
 
         public RoutesViewModel()
-        {            
-            _settings = new SettingsManager("ewl", "EasyFarm Waypoint List");            
+        {
+            Func<string> defaultFileName = () => { return FFACE?.Player?.Zone.ToString(); };
+            _settings = new SettingsManager("ewl", "EasyFarm Waypoint List", defaultFileName);            
 
             ClearCommand = new RelayCommand(ClearRoute);
             RecordCommand = new RelayCommand(Record);

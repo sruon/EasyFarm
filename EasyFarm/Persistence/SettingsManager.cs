@@ -31,9 +31,11 @@ namespace EasyFarm.Persistence
         private readonly string _extension;
         private readonly string _fileType;
         private readonly string _startPath;
+        private readonly Func<string> _defaultFileName;
 
-        public SettingsManager(string extension, string fileType)
+        public SettingsManager(string extension, string fileType, Func<string> defaultFileName)
         {
+            _defaultFileName = defaultFileName;            
             _extension = extension;
             _fileType = fileType;
             _startPath = Environment.CurrentDirectory;
@@ -95,12 +97,20 @@ namespace EasyFarm.Persistence
 
         private string GetSavePath()
         {
+            string fileName = null;
+
+            if (_defaultFileName != null)
+            {
+                fileName = _defaultFileName();
+            }
+
             var sfd = new SaveFileDialog
             {
                 OverwritePrompt = true,
                 InitialDirectory = _startPath,
                 AddExtension = true,
                 DefaultExt = _extension,
+                FileName = fileName,
                 Filter = GetFilter()
             };
 
@@ -110,11 +120,18 @@ namespace EasyFarm.Persistence
 
         private string GetLoadPath()
         {
+            string fileName = null;
+
+            if (_defaultFileName != null)
+            {
+                fileName = _defaultFileName();
+            }
             var ofd = new OpenFileDialog
             {
                 InitialDirectory = _startPath,
                 AddExtension = true,
                 DefaultExt = _extension,
+                FileName=fileName,
                 Filter = GetFilter()
             };
 
