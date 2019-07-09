@@ -51,7 +51,7 @@ namespace EasyFarm.States
         private void OnJobPoint(Match match) { ReportViewModel.JobPointsGained = 1; }
         private void OnSpark(Match match) { ReportViewModel.Sparks = Int32.Parse(match.Groups[1].Value); }
         private void OnUnity(Match match) { ReportViewModel.Unity = Int32.Parse(match.Groups[1].Value); }
-        private void OnDrop(Match match) { }
+        private void OnDrop(Match match) { ReportViewModel.AddDrop(match.Groups[1].Value); }
         private void OnGil(Match match) { ReportViewModel.Gil = Int32.Parse(match.Groups[1].Value.Replace(",", "")); }
         private void ParseChatForReports(IGameContext context)
         {

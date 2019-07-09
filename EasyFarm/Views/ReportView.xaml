@@ -14,15 +14,15 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto"/>
-            <ColumnDefinition Width="Auto"/>
-            <ColumnDefinition Width="Auto"/>
-            <ColumnDefinition Width="Auto"/>
-            <ColumnDefinition Width="Auto"/>
-            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <Label Grid.Row="1" Grid.Column="0" Margin="5">EXP</Label>
         <TextBox Grid.Row="1" Grid.Column="1" Margin="5" Text="{Binding EXP}" />
@@ -42,5 +42,16 @@
         <TextBox Grid.Row="3" Grid.Column="5" Margin="5" Text="{Binding JobPointsGained}" />
         <Label Grid.Row="4" Grid.Column="0" Margin="5">Gil</Label>
         <TextBox Grid.Row="4" Grid.Column="1" Margin="5" Text="{Binding Gil}" />
+        <Label Grid.Row="5" Grid.Column="0" Margin="5">Drops</Label>
+        <DataGrid Grid.Row="5" Grid.Column="1" ItemsSource="{Binding Drops, Mode=TwoWay, NotifyOnSourceUpdated=True, UpdateSourceTrigger=PropertyChanged}" 
+                  Grid.RowSpan="2" 
+                  Grid.ColumnSpan="6" 
+                  BorderThickness="1" 
+                  AutoGenerateColumns="False">
+            <DataGrid.Columns >
+                <DataGridTextColumn Header="Item" Binding="{Binding Key}"></DataGridTextColumn>
+                <DataGridTextColumn Header="#" Binding="{Binding Value}"></DataGridTextColumn>
+            </DataGrid.Columns>
+        </DataGrid>
     </Grid>
 </UserControl>

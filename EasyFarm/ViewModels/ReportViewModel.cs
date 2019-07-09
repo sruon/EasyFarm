@@ -22,13 +22,14 @@ using EasyFarm.Infrastructure;
 using EasyFarm.UserSettings;
 using System.ComponentModel;
 using System;
+using System.Collections.Generic;
+using System.Collections.Concurrent;
 
 namespace EasyFarm.ViewModels
 {
     public class ReportViewModel : ViewModelBase, IViewModel, INotifyPropertyChanged
     {
         public static event PropertyChangedEventHandler StaticPropertyChanged;
-        private static int _defeated = 0;
         private static int _exp = 0;
         private static int _lp = 0;
         private static int _cp = 0;
@@ -38,6 +39,7 @@ namespace EasyFarm.ViewModels
         private static int _sparks = 0;
         private static int _unity = 0;
         private static int _gil = 0;
+        private static ObservableConcurrentDictionary<string, int> _drops = new ObservableConcurrentDictionary<string, int>();
 
         public ReportViewModel()
         {
@@ -49,15 +51,6 @@ namespace EasyFarm.ViewModels
            StaticPropertyChanged?.Invoke(null, new PropertyChangedEventArgs(propertyName));
         }
 
-        public static int Defeated
-        {
-            get { return _defeated; }
-            set
-            {
-                _defeated += value;
-                NotifyPropertyChanged("Defeated");
-            }
-        }
 
         public static int EXP
         {
@@ -147,5 +140,24 @@ namespace EasyFarm.ViewModels
             }
         }
 
+        public static ObservableConcurrentDictionary<string, int> Drops {
+            get { return _drops; }
+            set { 
+                }
+            
+        }
+
+        public static void AddDrop(string drop)
+        {
+            var formattedDrop = drop.Replace("a ", "").Replace("an ", "");
+
+            if (_drops.ContainsKey(formattedDrop)) {
+                _drops[formattedDrop] += 1;
+            } else
+            {
+                _drops[formattedDrop] = 1;
+            }
+            NotifyPropertyChanged("Drops");
+        }
     }
 }
