@@ -25,6 +25,7 @@ using System.Collections.Generic;
 using EasyFarm.Context;
 using EasyFarm.UserSettings;
 using Player = EasyFarm.Classes.Player;
+using EliteMMO.API;
 
 namespace EasyFarm.States
 {
@@ -77,11 +78,11 @@ namespace EasyFarm.States
 
         private void ShouldRecycleBattleStateCheck(IGameContext context)
         {
-            var chatEntries = context.API.Chat.ChatEntries.ToList();
+            // Shallow clone to solve - Collection was modified after the enumerator was instantiated.
+            var chatEntries = new Queue<EliteAPI.ChatEntry>(context.API.Chat.ChatEntries).ToList();
             var invalidTargetPattern = new Regex("Unable to see");
 
             DateTime now = DateTime.Now;
-
             List<EliteMMO.API.EliteAPI.ChatEntry> matches = chatEntries
                 .Where(x => invalidTargetPattern.IsMatch(x.Text))
                 .Where(x => x.Timestamp > now.AddSeconds(-5)).ToList();

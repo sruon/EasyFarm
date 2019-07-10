@@ -92,3 +92,22 @@ This should generate a coverage folder containing a index.htm file containing th
 
 ##### Why is the program not targeting mobs correctly or not at all?
 * Try turning off the in-game auto target feature.
+
+#### Changes from upstream
+* Automatically update EliteAPI.dll when available
+* Automatically attach to FFXI if only one process is detected
+* Fixed the pol.exe process matching - Select Character now only returns the proper processes
+* Added option to switch to 3rd person during combat. First person is still used for movement.
+* Auto-saves to a file "{Character Name)-(Character Job).eup"
+* Auto-loads from a file named "(Character Name)-(Character Job).eup"
+* Save and load dialog have sane defaults - "(Character Name)-(Character Job).eup" for settings. "(Zone_Name).ewp" for routes.
+* Resummons trusts after levelling up.
+* Automatically disable autotarget on start.
+* Allows user to set if bot should stop after Death - should support routes created from a same zone HomePoint - Missing Reraise logic. (Untested)
+* Abilities dropdown now return the proper list of abilities/spell the player has access to.
+* New report main tab showing gains
+  * EXP/LP/CP
+  * Sparks/Unity
+  * Levels/Merits/JPs
+  * Gil
+  * Drop list
