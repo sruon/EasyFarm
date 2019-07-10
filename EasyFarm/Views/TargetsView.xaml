@@ -136,8 +136,8 @@
                                 Foreground="Black" Header="Name" IsReadOnly="true" />
                     <DataGridTextColumn Binding="{Binding Id}" 
                                 Foreground="Black" Header="ID" IsReadOnly="true" />
-                    <DataGridCheckBoxColumn Binding="{Binding TrackById}"
-                                Header="Only kill ID?" IsReadOnly="false" />
+                    <DataGridCheckBoxColumn Binding="{Binding TrackById, UpdateSourceTrigger=PropertyChanged}"
+                                Header="Track by Id" IsReadOnly="false" />
                     <DataGridTemplateColumn>
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>

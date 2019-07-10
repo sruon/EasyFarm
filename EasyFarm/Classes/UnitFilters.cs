@@ -83,9 +83,40 @@ namespace EasyFarm.Classes
             if (mob.HasAggroed && config.AggroFilter) return true;
 
             // There is a target's list but the mob is not on it.
-            if (!MatchAny(mob.Name, (from targetMob in config.TargetedMobs select targetMob.Name).ToList(), RegexOptions.IgnoreCase) &&
-                config.TargetedMobs.Any())
-                return false;
+            if (config.TargetedMobs.Any())
+            {
+                var matchedMobsByName = config.TargetedMobs.Where(x => x.Name == mob.Name).ToList();
+                bool matchedByRegex = MatchAny(mob.Name, (from targetMob in config.TargetedMobs select targetMob.Name).ToList(), RegexOptions.IgnoreCase);
+
+                if (!matchedMobsByName.Any() && !matchedByRegex)
+                {
+                    // Could not match the name against mob list + regex, do not target.
+                    return false;
+                }
+                else
+                {
+                    bool matchFound = false;
+                    foreach (var matchedMob in matchedMobsByName)
+                    {
+                        if (matchedMob.TrackById)
+                        {
+                            // We've set the mob to only be killed for a given ID.
+                            if (matchedMob.Id == mob.Id)
+                            {
+                                // ID match, target it.
+                                matchFound = true;
+                            }
+                        } else
+                        {
+                            // We've set the mob to be tracked regardless of ID
+                            matchFound = true;
+                        }
+                    }
+                    if (!matchedByRegex)
+                        if (!matchFound)
+                            return false;
+                }
+            }
 
             // Mob on our targets list or not on our ignore list.
 
