@@ -15,11 +15,11 @@
 // You should have received a copy of the GNU General Public License
 // If not, see <http://www.gnu.org/licenses/>.
 // ///////////////////////////////////////////////////////////////////
+using EasyFarm.UserSettings;
 using MemoryAPI;
+using MemoryAPI.Navigation;
 using System;
 using System.Linq;
-using EasyFarm.UserSettings;
-using MemoryAPI.Navigation;
 
 namespace EasyFarm.Classes
 {

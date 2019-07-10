@@ -119,7 +119,7 @@ namespace EasyFarm.UserSettings
             get => Config.Instance.PartyFilter;
             set => Config.Instance.PartyFilter = value;
         }
-        public ObservableCollection<string> TargetedMobs
+        public ObservableCollection<Target> TargetedMobs
         {
             get => Config.Instance.TargetedMobs;
             set => Config.Instance.TargetedMobs = value;

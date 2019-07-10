@@ -15,7 +15,10 @@
 // You should have received a copy of the GNU General Public License
 // If not, see <http://www.gnu.org/licenses/>.
 // ///////////////////////////////////////////////////////////////////
+using EasyFarm.Classes;
 using EasyFarm.ViewModels;
+using System.Windows;
+using System.Windows.Controls;
 
 namespace EasyFarm.Views
 {
@@ -28,6 +31,22 @@ namespace EasyFarm.Views
         {
             InitializeComponent();
             DataContext = new TargetsViewModel();
+        }
+
+        private void deleteButton_Click(object sender, RoutedEventArgs e)
+        {
+            // This is probably a terrible way of doing it.
+            ((TargetsViewModel)DataContext).DeleteSelected(e);
+        }
+
+        private void cmbNearby_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (e.AddedItems.Count > 0)
+            {
+                ((TargetsViewModel)DataContext).SelectedMob = (IUnit)e.AddedItems[0];
+                ((TargetsViewModel)DataContext).AddMob();
+                ((ComboBox)sender).SelectedIndex = -1;
+            }
         }
     }
 }

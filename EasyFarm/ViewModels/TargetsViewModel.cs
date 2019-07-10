@@ -15,13 +15,20 @@
 // You should have received a copy of the GNU General Public License
 // If not, see <http://www.gnu.org/licenses/>.
 // ///////////////////////////////////////////////////////////////////
-using System.Collections.ObjectModel;
 using EasyFarm.Classes;
 using EasyFarm.UserSettings;
+using MemoryAPI;
+using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
+using System.Linq;
+using System.Windows;
+using System.Windows.Controls;
 
 namespace EasyFarm.ViewModels
 {
-    public class TargetsViewModel : ListViewModel<string>
+    public class TargetsViewModel : ListViewModel<string>, INotifyPropertyChanged
     {
         public TargetsViewModel()
         {
@@ -31,13 +38,43 @@ namespace EasyFarm.ViewModels
         public override string Value
         {
             get { return Config.Instance.TargetName; }
-            set { Set(ref Config.Instance.TargetName, value); }
+            set { Set(ref Config.Instance.TargetName, value); OnPropertyChanged("Value"); }
         }
 
-        public override ObservableCollection<string> Values
+        private IUnit _selectedMob;
+
+        public IUnit SelectedMob {
+            get { return _selectedMob; }
+            set
+            {
+                _selectedMob = value;
+                OnPropertyChanged("SelectedMob");
+            }
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected void OnPropertyChanged(string name)
+        {
+            PropertyChangedEventHandler handler = PropertyChanged;
+            if (handler != null)
+            {
+                handler(this, new PropertyChangedEventArgs(name));
+            }
+        }
+
+        public ObservableCollection<Target> SelectedMobs
         {
             get { return Config.Instance.TargetedMobs; }
             set { Set(ref Config.Instance.TargetedMobs, value); }
+        }
+
+        public ICollection<IUnit> SurroundingMobs
+        {
+            get {
+                return UnitService.Units?.Where(x => x.NpcType.Equals(NpcType.Mob)).ToList();
+            }
+            set {  }
         }
 
         public bool Aggro
@@ -64,17 +101,64 @@ namespace EasyFarm.ViewModels
             set { Set(ref Config.Instance.ClaimedFilter, value); }
         }
 
+        public bool TrackByID { get; set; } = false;
+
+        public void AddMob()
+        {
+            Add();
+        }
+
         protected override void Add()
         {
-            if(string.IsNullOrWhiteSpace(Value)) return;            
-            base.Add();
-            Value = "";
+            if (SelectedMob != null)
+            {
+                if (TrackByID)
+                {
+                    var existingMob = SelectedMobs.FirstOrDefault(x => x.Name == SelectedMob.Name && x.Id == SelectedMob.Id);
+                    if (existingMob == null)
+                    {
+                        SelectedMobs.Add(new Target(SelectedMob.Name, SelectedMob.Id, true));
+                    }
+                }
+                else
+                {
+                    var existingMob = SelectedMobs.FirstOrDefault(x => x.Name == SelectedMob.Name);
+                    if (existingMob == null)
+                    {
+                        SelectedMobs.Add(new Target(SelectedMob.Name, SelectedMob.Id, false));
+                    } else
+                    {
+                        // Found existing track by Id, flip it to generic tracking.
+                        existingMob.TrackById = false;
+                    }
+                }
+                SelectedMob = null;
+            }
+            else
+            {
+                if (string.IsNullOrWhiteSpace(Value)) return;
+                SelectedMobs.Add(new Target(Value, 0, false));
+                Value = "";
+            }
         }
 
         protected override void Clear()
         {
-            base.Clear();
+            SelectedMobs.Clear();
             Value = "";
         }
+
+        public void DeleteSelected(RoutedEventArgs e)
+        {
+            try
+            {
+                SelectedMobs.Remove((Target)((Button)e.Source).DataContext);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString());
+            }
+        }
+
     }
 }

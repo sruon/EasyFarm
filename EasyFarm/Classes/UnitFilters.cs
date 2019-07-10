@@ -83,7 +83,7 @@ namespace EasyFarm.Classes
             if (mob.HasAggroed && config.AggroFilter) return true;
 
             // There is a target's list but the mob is not on it.
-            if (!MatchAny(mob.Name, config.TargetedMobs, RegexOptions.IgnoreCase) &&
+            if (!MatchAny(mob.Name, (from targetMob in config.TargetedMobs select targetMob.Name).ToList(), RegexOptions.IgnoreCase) &&
                 config.TargetedMobs.Any())
                 return false;
 

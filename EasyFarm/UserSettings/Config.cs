@@ -128,7 +128,7 @@ namespace EasyFarm.UserSettings
         /// <summary>
         ///     A list of mobs that we should only kill.
         /// </summary>
-        public ObservableCollection<string> TargetedMobs = new ObservableCollection<string>();
+        public ObservableCollection<Target> TargetedMobs = new ObservableCollection<Target>();
 
         /// <summary>
         ///     Name of the mob to be attacked
@@ -220,5 +220,7 @@ namespace EasyFarm.UserSettings
         /// The current player to follow.
         /// </summary>
         public string FollowedPlayer = string.Empty;
+
+        public IUnit SelectedMob;
     }
 }

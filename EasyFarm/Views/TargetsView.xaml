@@ -15,26 +15,60 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+
         </Grid.RowDefinitions>
         <Label VerticalAlignment="Center"
                Content="Name" />
         <!--Used to keep track of the names of the enemies we want to kill-->
-        <ComboBox Grid.Row="0"
+        <TextBox Grid.Row="0"
                   Grid.Column="1"
                   Margin="5"
-                  IsEditable="True"
-                  ItemsSource="{Binding Values}"
-                  Text="{Binding Value}"
-                  IsSynchronizedWithCurrentItem="True" />
+                  Text="{Binding Value}">
+        </TextBox>
+        <Label Grid.Row="1"
+               Grid.Column="0"
+               VerticalAlignment="Center"
+               Content="Nearby" />
+        <ComboBox Grid.Row="1"
+                  Grid.Column="1"
+                  Margin="5"
+                  ItemsSource="{Binding SurroundingMobs}"
+                  SelectionChanged="cmbNearby_SelectionChanged"
+                  IsEditable="False"
+                  SelectedValue="{Binding Id, Mode=TwoWay}"
+                  IsSynchronizedWithCurrentItem="True">
+            <ComboBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock>
+                        <TextBlock.Text>
+                        <MultiBinding StringFormat="{}{0} - {1}">
+                            <Binding Path="Name" />
+                            <Binding Path="Id" />
+                        </MultiBinding>
+                        </TextBlock.Text>
+                    </TextBlock>
+                </DataTemplate>
+            </ComboBox.ItemTemplate>
+        </ComboBox>
+        <CheckBox 
+                Grid.Row="2"
+                Grid.Column="1"
+                Margin="5 0 0 5"
+                ToolTip="If toggled the program will not attack similar named monsters unless it matches the NPC ID. i.e. Use for killing PH for lottery NMs."
+                Content="Track by ID"
+                IsChecked="{Binding TrackByID}" />
 
-        <Label Grid.Row="1" Grid.Column="0"
+        <Label Grid.Row="3" Grid.Column="0"
                HorizontalAlignment="Stretch"
                VerticalAlignment="Stretch"
                Content="Kill" />
 
         <!--Used to filter what types of creatures we want to kill. 
         Do we want to only kill things are party attack for example?-->
-        <Grid Grid.Row="1"
+        <Grid Grid.Row="3"
                      Grid.Column="1"
                      Margin="5 0">
             <Grid.ColumnDefinitions>
@@ -71,7 +105,7 @@
                 IsChecked="{Binding Claimed}" />
         </Grid>
 
-        <Grid Grid.Row="2"
+        <Grid Grid.Row="4"
               Grid.Column="1"
             Margin="5">
             <Grid.ColumnDefinitions>
@@ -83,15 +117,41 @@
                     Grid.Column="0"
                     Content="Add"
                     Command="{Binding AddCommand}" />
-            <Button x:Name="BtnDeleteTarget"
-                    Grid.Column="1"
-                    Margin="5 0"
-                    Content="Delete"
-                    Command="{Binding DeleteCommand}" />
+
             <Button x:Name="BtnClearTarget"
                     Grid.Column="2"
                     Content="Clear"
                     Command="{Binding ClearCommand}" />
+        </Grid>
+        <Grid Grid.Row="5"
+              Grid.Column="1"
+            Margin="5">
+            <DataGrid ItemsSource="{Binding SelectedMobs, Mode=TwoWay, NotifyOnSourceUpdated=True, UpdateSourceTrigger=PropertyChanged}" 
+                  Grid.RowSpan="2" 
+                  Grid.ColumnSpan="2" 
+                  BorderThickness="1" 
+                  AutoGenerateColumns="False">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Binding="{Binding Name}" 
+                                Foreground="Black" Header="Name" IsReadOnly="true" />
+                    <DataGridTextColumn Binding="{Binding Id}" 
+                                Foreground="Black" Header="ID" IsReadOnly="true" />
+                    <DataGridCheckBoxColumn Binding="{Binding TrackById}"
+                                Header="Only kill ID?" IsReadOnly="false" />
+                    <DataGridTemplateColumn>
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button x:Name="BtnDeleteTarget"
+                                        Grid.Column="2"
+                                        Content="Delete"
+                                        Click="deleteButton_Click"
+                                        />
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+            
         </Grid>
     </Grid>
 </UserControl>
