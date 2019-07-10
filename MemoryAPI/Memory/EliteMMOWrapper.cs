@@ -474,6 +474,8 @@ namespace MemoryAPI.Memory
 
             public int ID => (int)_api.Target.GetTargetInfo().TargetIndex;
 
+            public EliteAPI.TargetInfo Entity => _api.Target.GetTargetInfo();
+
             public bool SetNPCTarget(int index)
             {
                 return _api.Target.SetTarget(index);

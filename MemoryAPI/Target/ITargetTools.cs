@@ -15,11 +15,14 @@
 // You should have received a copy of the GNU General Public License
 // If not, see <http://www.gnu.org/licenses/>.
 // ///////////////////////////////////////////////////////////////////
+using EliteMMO.API;
+
 namespace MemoryAPI
 {
     public interface ITargetTools
     {
         int ID { get; }
         bool SetNPCTarget(int index);
+        EliteAPI.TargetInfo Entity { get; }
     }
 }

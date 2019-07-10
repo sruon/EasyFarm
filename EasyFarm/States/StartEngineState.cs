@@ -17,6 +17,7 @@
 // ///////////////////////////////////////////////////////////////////
 using System;
 using EasyFarm.Context;
+using EasyFarm.UserSettings;
 
 namespace EasyFarm.States
 {
@@ -33,6 +34,9 @@ namespace EasyFarm.States
         {
             // Reset all action's last cast times on FSM start. 
             foreach (var action in context.Config.BattleLists.Actions) action.LastCast = DateTime.Now;
+
+            // Disabling Autotarget solves some targeting issues.
+            context.API.Windower.SendString(Constants.AutoTargetOff);
 
             // Only run once at the FSM start. 
             Enabled = false;

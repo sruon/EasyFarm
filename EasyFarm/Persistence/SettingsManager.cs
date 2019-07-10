@@ -101,7 +101,7 @@ namespace EasyFarm.Persistence
 
             if (_defaultFileName != null)
             {
-                fileName = _defaultFileName();
+                fileName = _defaultFileName() + $".{_extension}";
             }
 
             var sfd = new SaveFileDialog
@@ -124,7 +124,7 @@ namespace EasyFarm.Persistence
 
             if (_defaultFileName != null)
             {
-                fileName = _defaultFileName();
+                fileName = _defaultFileName() + $".{_extension}";
             }
             var ofd = new OpenFileDialog
             {

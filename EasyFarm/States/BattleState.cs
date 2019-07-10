@@ -88,8 +88,18 @@ namespace EasyFarm.States
 
             if (matches.Count >= 2)
             {
-                    context.API.Windower.SendString(Constants.AttackOff);
-                    LogViewModel.Write("Recycled battle stance to properly engage the target.");
+                context.API.Windower.SendString(Constants.AttackOff);
+                LogViewModel.Write($"Unable to see (match {matches.Count}): Target locked? {context.API.Target.Entity.LockedOn}");
+
+                LogViewModel.Write("Recycled battle stance to properly engage the target.");
+                    
+            } else if (matches.Count == 1) {
+                LogViewModel.Write($"Unable to see (match 1): Target locked? {context.API.Target.Entity.LockedOn}");
+                context.API.Windower.SendString(Constants.AttackTarget);
+            }
+            foreach (var match in matches)
+            {
+                match.Text = String.Empty;
             }
         }
     }

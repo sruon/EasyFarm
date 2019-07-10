@@ -82,5 +82,11 @@ namespace EasyFarm.UserSettings
         public static int TrustPartySize = 5;
 
         public const string SetTargetCursor = "/ta <t>";
+
+        public const string LockOn = "/lockon";
+
+        public const string AutoTargetOff = "/autotarget off";
+
+        public const string AutoTargetOn = "/autotarget on";
     }
 }
