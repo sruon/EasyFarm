@@ -17,8 +17,7 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-
+            <RowDefinition Height="*" />
         </Grid.RowDefinitions>
         <Label VerticalAlignment="Center"
                Content="Name" />
@@ -35,11 +34,12 @@
         <ComboBox Grid.Row="1"
                   Grid.Column="1"
                   Margin="5"
-                  ItemsSource="{Binding SurroundingMobs}"
+                  IsTextSearchEnabled="False"
+                  ItemsSource="{Binding SurroundingMobs, Mode=TwoWay}"
                   SelectionChanged="cmbNearby_SelectionChanged"
                   IsEditable="False"
-                  SelectedValue="{Binding Id, Mode=TwoWay}"
-                  IsSynchronizedWithCurrentItem="True">
+                  SelectedIndex="-1"
+                  DropDownOpened="cmbNearby_DropDownOpened">
             <ComboBox.ItemTemplate>
                 <DataTemplate>
                     <TextBlock>
@@ -132,11 +132,11 @@
                   BorderThickness="1" 
                   AutoGenerateColumns="False">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Binding="{Binding Name}" 
+                    <DataGridTextColumn Binding="{Binding Name}" Width="*"
                                 Foreground="Black" Header="Name" IsReadOnly="true" />
-                    <DataGridTextColumn Binding="{Binding Id}" 
+                    <DataGridTextColumn Binding="{Binding Id}" Width="Auto"
                                 Foreground="Black" Header="ID" IsReadOnly="true" />
-                    <DataGridCheckBoxColumn Binding="{Binding TrackById, UpdateSourceTrigger=PropertyChanged}"
+                    <DataGridCheckBoxColumn Binding="{Binding TrackById, UpdateSourceTrigger=PropertyChanged}" Width="Auto"
                                 Header="Track by Id" IsReadOnly="false" />
                     <DataGridTemplateColumn>
                         <DataGridTemplateColumn.CellTemplate>

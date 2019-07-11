@@ -17,6 +17,7 @@
 // ///////////////////////////////////////////////////////////////////
 using EasyFarm.Classes;
 using EasyFarm.ViewModels;
+using System;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -41,12 +42,21 @@ namespace EasyFarm.Views
 
         private void cmbNearby_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (e.AddedItems.Count > 0)
+            if (((ComboBox)sender).IsDropDownOpen)
             {
-                ((TargetsViewModel)DataContext).SelectedMob = (IUnit)e.AddedItems[0];
-                ((TargetsViewModel)DataContext).AddMob();
-                ((ComboBox)sender).SelectedIndex = -1;
+                if (e.AddedItems.Count > 0)
+                {
+                    ((TargetsViewModel)DataContext).SelectedMob = (IUnit)e.AddedItems[0];
+                    ((TargetsViewModel)DataContext).AddMob();
+                    ((ComboBox)sender).SelectedIndex = -1;
+                }
             }
+        }
+        private void cmbNearby_DropDownOpened(object sender, EventArgs e)
+        {
+            // Refresh the list when user opens it.
+            ((ComboBox)sender).ItemsSource = ((TargetsViewModel)DataContext).SurroundingMobs;
+            ((ComboBox)sender).SelectedIndex = -1;
         }
     }
 }

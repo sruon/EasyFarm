@@ -10,8 +10,8 @@
                        x:Name="MainForm"
                        x:Class="EasyFarm.Views.MasterView"
                        Title="{Binding MainWindowTitle}"
-                       Width="650"
-                       Height="400"
+                       Width="850"
+                       Height="600"
                        Topmost="{Binding IsChecked, ElementName=MnuAlwaysOnTop, Mode=TwoWay, UpdateSourceTrigger=LostFocus}">
     <controls:MetroWindow.Resources>
         <ResourceDictionary>
