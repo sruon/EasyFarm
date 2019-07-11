@@ -78,8 +78,7 @@ namespace EasyFarm.States
 
         private void ShouldRecycleBattleStateCheck(IGameContext context)
         {
-            // Shallow clone to solve - Collection was modified after the enumerator was instantiated.
-            var chatEntries = new Queue<EliteAPI.ChatEntry>(context.API.Chat.ChatEntries).ToList();
+            var chatEntries = context.API.Chat.ChatEntries.ToList();
             var invalidTargetPattern = new Regex("Unable to see");
 
             DateTime now = DateTime.Now;
