@@ -72,7 +72,7 @@ namespace EasyFarm.ViewModels
         public ICollection<IUnit> SurroundingMobs
         {
             get {
-                return UnitService.Units?.Where(x => x.NpcType.Equals(NpcType.Mob)).ToList();
+                return UnitService.Units?.Where(x => x.NpcType.Equals(NpcType.Mob)).OrderBy(x => x.Name).ToList();
             }
             set {  }
         }
