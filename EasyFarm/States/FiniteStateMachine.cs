@@ -50,7 +50,7 @@ namespace EasyFarm.States
             AddState(new SetFightingState() {Priority = 7});
             AddState(new FollowState() {Priority = 5});
             AddState(new RestState() {Priority = 2});
-            AddState(new SummonTrustsState() {Priority = 6});
+            AddState(new SummonTrustsState() {Priority = 0});
             AddState(new ApproachState() {Priority = 0});
             AddState(new BattleState() {Priority = 3});
             AddState(new WeaponskillState() {Priority = 2});
