@@ -15,13 +15,13 @@
 // You should have received a copy of the GNU General Public License
 // If not, see <http://www.gnu.org/licenses/>.
 // ///////////////////////////////////////////////////////////////////
-using System.Collections.Generic;
 using EliteMMO.API;
+using System.Collections.Concurrent;
 
 namespace MemoryAPI.Chat
 {
     public interface IChatTools
     {
-        Queue<EliteAPI.ChatEntry> ChatEntries { get; set; }
+        ConcurrentQueue<EliteAPI.ChatEntry> ChatEntries { get; set; }
     }
 }

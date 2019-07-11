@@ -24,6 +24,7 @@ using MemoryAPI.Chat;
 using MemoryAPI.Navigation;
 using MemoryAPI.Resources;
 using MemoryAPI.Windower;
+using System.Collections.Concurrent;
 
 namespace MemoryAPI.Memory
 {
@@ -528,7 +529,7 @@ namespace MemoryAPI.Memory
         public class ChatTools : IChatTools
         {
             private readonly EliteAPI _api;
-            public Queue<EliteAPI.ChatEntry> ChatEntries { get; set; } = new Queue<EliteAPI.ChatEntry>();
+            public ConcurrentQueue<EliteAPI.ChatEntry> ChatEntries { get; set; } = new ConcurrentQueue<EliteAPI.ChatEntry>();
 
             public ChatTools(EliteAPI api)
             {
